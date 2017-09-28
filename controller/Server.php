@@ -18,12 +18,12 @@ class Server {
      */
     public function __construct() {
         global $request;
-
-        require_once(__DIR__ + "../config/config.conf.php");
+        
+        require_once(__DIR__ . "/../config/config.conf.php");
 
         $dsn      = $SCFR_OAUTH_CONF['dsn'];
         $username = $SCFR_OAUTH_CONF['username'];
-        $password = $SCFR_OAUTH_CONF['pwd'];
+        $password = $SCFR_OAUTH_CONF['password'];
         $request->enable_super_globals();
         
         \OAuth2\Autoloader::register();
