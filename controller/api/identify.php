@@ -33,7 +33,7 @@ class Identify extends \scfr\oauth\controller\Server {
                 $payload = [
                     "username" => $row['username'],
                     "user_color" => $row['user_colour'] ? "#".$row['user_colour'] : null,
-                    "user_id" => (integer) ($row['user_id']),
+                    "user_id" => (integer) $user_id,
                     "org" => $this->getOrgOfPlayerById($user_id)
                 ];
                 

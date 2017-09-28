@@ -49,7 +49,7 @@ class Server {
      * @param string $scope the scope to check against
      * @return boolean true if authorized for given scope, dies otherwise.
      */
-    protected function ensure_authorized($scope = "basic") {
+    protected function ensure_authorized($scope = "") {
         if (!$this->server->verifyResourceRequest(\SCFROAuth2\Request::createFromGlobals(), null, $scope)) {
             $this->server->getResponse()->send();
             die;
