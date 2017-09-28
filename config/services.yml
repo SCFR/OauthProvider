@@ -1,0 +1,16 @@
+services:
+    scfr.oauth.listener:
+        class: scfr\oauth\event\listener
+        tags:
+            - { name: event.listener }
+    scfr.oauth.controller.server:
+        class: scfr\oauth\controller\server
+    scfr.oauth.controller.token:
+        class: scfr\oauth\controller\token
+    scfr.oauth.controller.authorize:
+        class: scfr\oauth\controller\authorize        
+        arguments:
+            - '@controller.helper'
+            - '@template'
+    scfr.oauth.controller.api.identify:
+        class: scfr\oauth\controller\api\identify

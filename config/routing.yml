@@ -1,0 +1,11 @@
+scfr_oauth_token:
+    path: /oauth2/v1/token
+    defaults: { _controller: scfr.oauth.controller.token:handle }
+
+scfr_oauth_authorize:
+    path: /oauth2/v1/authorize
+    defaults: { _controller: scfr.oauth.controller.authorize:handle }
+
+scfr_oauth_api_identify:
+    path: /scfr-api/v1/Identify
+    defaults: { _controller: scfr.oauth.controller.api.identify:get_identify }

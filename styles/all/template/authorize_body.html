@@ -1,0 +1,119 @@
+<!-- IF DISPLAY_FORM -->
+<link href="https://fonts.googleapis.com/css?family=Electrolize|Roboto" rel="stylesheet">
+<style>
+    .alert {
+        background-color: #26323A;
+        box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+        display: block;
+        padding: 24px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        overflow: auto;
+        color: white;
+        font-family: "Roboto";
+    }
+
+    h2 {
+        font-family: Electrolize;
+        text-transform: uppercase;
+        color: white;
+        margin: -24px;
+        padding: 24px;
+        background: #3e5a69;
+        font-size: 2rem;
+        line-height: 2rem;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    em {
+        font-size: 0.9rem;
+        color: rgb(200, 200, 200);
+    }
+
+    .actions {
+        margin-top: 24px;
+        margin-bottom: -24px;
+        width: 100%;
+        height: 64px;
+        text-align: right;
+    }
+
+    form {
+        margin-bottom: 0px;
+    }
+
+    input {
+        border: 0px;
+        outline: none;
+        background: transparent;
+        color: white;
+        font-family: "Electrolize";
+        padding: 9px 24px;
+        margin: 12px;
+        cursor: pointer;
+        text-transform: uppercase;
+        width: 130px;
+        border-radius: 2px;
+        transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    }
+
+    input.authorize {
+        background-color: #4894b3;
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        transform: translate3d(0, 0, 0);
+    }
+
+    input.authorize:active {
+        background-color: #7ccbf1;
+    }
+
+    input.cancel {
+        color: #f44336;
+    }
+
+    input.cancel:hover {
+        background-color: rgba(244, 67, 54, 0.12);
+    }
+
+    input.cancel:active {
+        background-color: rgba(244, 167, 154, 0.12);
+    }
+
+    .username {
+        font-weight:bolder;
+    }
+</style>
+
+<body style="background-color: #171f25;display:flex;margin:0px">
+    <img src="https://starcitizen.fr/wp-content/themes/FutureSpaceV6/images/logo.min.png" style="z-index:-1;position: absolute;left: 0px;right: 0px;width: 60%;margin: auto;top: 30%;bottom: 70%;">
+
+    <div class="wrapper" style="max-width:100%; padding:12px; margin:auto">
+        <div class="alert">
+            <!-- IF USER_IS_LOGGED_IN -->
+            <h2>Une application veux se connecter à ton compte StarCitizen.fr</h2>
+            <p>Bonjour <strong class="username" style="color:{{ USER_COLOR }}">{{ USERNAME }}</strong>. L'application <strong>{{ OAUTH_APP_NAME }}</strong> souhaite s'associer à ton compte Star Citizen.fr </p>
+            <p>Si tu accepte, elle pourra : </p>
+            <ul>
+                <!-- BEGIN scope -->
+                    <li>{{ scope.name }}</li>
+                <!-- END scope -->
+            </ul>
+
+            <em><strong>{{ OAUTH_APP_NAME }}</strong> n'aura jamais accès à ton mot de passe ou tes informations privées</em>
+
+            <div class="actions">
+                <form method="post">
+                    <input type="submit" class="authorize" name="authorized" value="Autoriser">
+                    <input type="submit" class="cancel" name="cancel" value="Annuler">
+                </form>
+
+            </div>
+            <!-- ELSE -->
+            CACA!
+            <!-- ENDIF -->
+        </div>
+    </div>
+
+</body>
+<!-- ENDIF -->
