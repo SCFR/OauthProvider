@@ -8,7 +8,7 @@ class Token extends Server {
      */
     public function handle() {
         global $request;
-        $this->server->handleTokenRequest(\OAuth2\Request::createFromGlobals())->send();
+        $this->server->handleTokenRequest(\SCFROAuth2\Request::createFromGlobals())->send();
         die();
     }
 }

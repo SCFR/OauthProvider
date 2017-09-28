@@ -1,9 +1,9 @@
 <?php
 
-namespace OAuth2\ResponseType;
+namespace SCFROAuth2\ResponseType;
 
-use OAuth2\Server;
-use OAuth2\Storage\Memory;
+use SCFROAuth2\Server;
+use SCFROAuth2\Storage\Memory;
 
 class AccessTokenTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace OAuth2\Storage;
+namespace SCFROAuth2\Storage;
 
-use OAuth2\Scope;
+use SCFROAuth2\Scope;
 
 class ScopeTest extends BaseTest
 {

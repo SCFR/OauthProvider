@@ -1,9 +1,9 @@
 <?php
 
-namespace OAuth2\Request;
+namespace SCFROAuth2\Request;
 
-use OAuth2\Request;
-use OAuth2\RequestInterface;
+use SCFROAuth2\Request;
+use SCFROAuth2\RequestInterface;
 
 /**
 *

@@ -1,11 +1,11 @@
 <?php
 
-namespace OAuth2\OpenID\Controller;
+namespace SCFROAuth2\OpenID\Controller;
 
-use OAuth2\Storage\Bootstrap;
-use OAuth2\Server;
-use OAuth2\Request;
-use OAuth2\Response;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\Server;
+use SCFROAuth2\Request;
+use SCFROAuth2\Response;
 
 class AuthorizeControllerTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace OAuth2;
+namespace SCFROAuth2;
 
-use OAuth2\Storage\Memory;
+use SCFROAuth2\Storage\Memory;
 
 class ScopeTest extends \PHPUnit_Framework_TestCase
 {

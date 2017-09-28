@@ -1,10 +1,10 @@
 <?php
 
-namespace OAuth2;
+namespace SCFROAuth2;
 
-use OAuth2\Request\TestRequest;
-use OAuth2\Storage\Bootstrap;
-use OAuth2\GrantType\AuthorizationCode;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\GrantType\AuthorizationCode;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {

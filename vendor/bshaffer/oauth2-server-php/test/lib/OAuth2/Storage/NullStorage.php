@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth2\Storage;
+namespace SCFROAuth2\Storage;
 
 /**
 *

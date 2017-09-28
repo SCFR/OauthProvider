@@ -13,7 +13,7 @@
     ],
     "homepage": "http://github.com/bshaffer/oauth2-server-php",
     "autoload": {
-        "psr-0": { "OAuth2": "src/" }
+        "psr-0": { "SCFROAuth2": "src/" }
     },
     "require":{
         "php":">=5.3.9"

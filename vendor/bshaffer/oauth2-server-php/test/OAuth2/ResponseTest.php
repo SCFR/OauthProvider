@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth2;
+namespace SCFROAuth2;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {

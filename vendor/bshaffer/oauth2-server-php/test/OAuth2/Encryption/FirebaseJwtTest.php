@@ -1,8 +1,8 @@
 <?php
 
-namespace OAuth2\Encryption;
+namespace SCFROAuth2\Encryption;
 
-use OAuth2\Storage\Bootstrap;
+use SCFROAuth2\Storage\Bootstrap;
 
 class FirebaseJwtTest extends \PHPUnit_Framework_TestCase
 {

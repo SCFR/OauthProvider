@@ -1,8 +1,8 @@
 <?php
 
-namespace OAuth2\Storage;
+namespace SCFROAuth2\Storage;
 
-use OAuth2\Encryption\Jwt;
+use SCFROAuth2\Encryption\Jwt;
 
 class JwtAccessTokenTest extends BaseTest
 {

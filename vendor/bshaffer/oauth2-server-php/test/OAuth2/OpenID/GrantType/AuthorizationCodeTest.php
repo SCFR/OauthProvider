@@ -1,11 +1,11 @@
 <?php
 
-namespace OAuth2\OpenID\GrantType;
+namespace SCFROAuth2\OpenID\GrantType;
 
-use OAuth2\Storage\Bootstrap;
-use OAuth2\Server;
-use OAuth2\Request\TestRequest;
-use OAuth2\Response;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\Server;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\Response;
 
 class AuthorizationCodeTest extends \PHPUnit_Framework_TestCase
 {

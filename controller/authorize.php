@@ -23,8 +23,8 @@ class Authorize extends Server
      * @return void
      */
     public function handle() {
-        $rq = \OAuth2\Request::createFromGlobals();
-        $response = new \OAuth2\Response();
+        $rq = \SCFROAuth2\Request::createFromGlobals();
+        $response = new \SCFROAuth2\Response();
         
         // Validate we have all we need in the auth request
         if (!$this->server->validateAuthorizeRequest($rq, $response)) {

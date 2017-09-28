@@ -1,15 +1,15 @@
 <?php
 
-namespace OAuth2;
+namespace SCFROAuth2;
 
-use OAuth2\Request\TestRequest;
-use OAuth2\ResponseType\AuthorizationCode;
-use OAuth2\Storage\Bootstrap;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\ResponseType\AuthorizationCode;
+use SCFROAuth2\Storage\Bootstrap;
 
 class ServerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException LogicException OAuth2\Storage\ClientInterface
+     * @expectedException LogicException SCFROAuth2\Storage\ClientInterface
      **/
     public function testGetAuthorizeControllerWithNoClientStorageThrowsException()
     {
@@ -19,13 +19,13 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\AccessTokenInterface
+     * @expectedException LogicException SCFROAuth2\Storage\AccessTokenInterface
      **/
     public function testGetAuthorizeControllerWithNoAccessTokenStorageThrowsException()
     {
         // must set AccessToken or AuthorizationCode
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
         $server->getAuthorizeController();
     }
 
@@ -33,8 +33,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     {
         // must set AccessToken or AuthorizationCode
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
-        $server->addResponseType($this->getMock('OAuth2\ResponseType\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
+        $server->addResponseType($this->getMock('SCFROAuth2\ResponseType\AccessTokenInterface'));
 
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -43,8 +43,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     {
         // must set AccessToken or AuthorizationCode
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
-        $server->addResponseType($this->getMock('OAuth2\ResponseType\AuthorizationCodeInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
+        $server->addResponseType($this->getMock('SCFROAuth2\ResponseType\AuthorizationCodeInterface'));
 
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -56,8 +56,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     {
         // must set AuthorizationCode or AccessToken / implicit
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'));
 
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -66,8 +66,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     {
         // must set AuthorizationCode or AccessToken / implicit
         $server = new Server(array(), array('allow_implicit' => true));
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'));
 
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -76,8 +76,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     {
         // must set AccessToken or AuthorizationCode
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\AuthorizationCodeInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AuthorizationCodeInterface'));
 
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -92,44 +92,44 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\ClientCredentialsInterface
+     * @expectedException LogicException SCFROAuth2\Storage\ClientCredentialsInterface
      **/
     public function testGetTokenControllerWithNoClientCredentialsStorageThrowsException()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\UserCredentialsInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\UserCredentialsInterface'));
         $server->getTokenController();
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\AccessTokenInterface
+     * @expectedException LogicException SCFROAuth2\Storage\AccessTokenInterface
      **/
     public function testGetTokenControllerWithNoAccessTokenStorageThrowsException()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientCredentialsInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface'));
         $server->getTokenController();
     }
 
     public function testGetTokenControllerWithAccessTokenAndClientCredentialsStorage()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientCredentialsInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface'));
         $server->getTokenController();
     }
 
     public function testGetTokenControllerAccessTokenStorageAndClientCredentialsStorageAndGrantTypes()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientCredentialsInterface'));
-        $server->addGrantType($this->getMockBuilder('OAuth2\GrantType\AuthorizationCode')->disableOriginalConstructor()->getMock());
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface'));
+        $server->addGrantType($this->getMockBuilder('SCFROAuth2\GrantType\AuthorizationCode')->disableOriginalConstructor()->getMock());
         $server->getTokenController();
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\AccessTokenInterface
+     * @expectedException LogicException SCFROAuth2\Storage\AccessTokenInterface
      **/
     public function testGetResourceControllerWithNoAccessTokenStorageThrowsException()
     {
@@ -140,12 +140,12 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testGetResourceControllerWithAccessTokenStorage()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'));
         $server->getResourceController();
     }
 
     /**
-     * @expectedException InvalidArgumentException OAuth2\Storage\AccessTokenInterface
+     * @expectedException InvalidArgumentException SCFROAuth2\Storage\AccessTokenInterface
      **/
     public function testAddingStorageWithInvalidClass()
     {
@@ -159,22 +159,22 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddingStorageWithInvalidKey()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'), 'nonexistant_storage');
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'), 'nonexistant_storage');
     }
 
     /**
-     * @expectedException InvalidArgumentException OAuth2\Storage\AuthorizationCodeInterface
+     * @expectedException InvalidArgumentException SCFROAuth2\Storage\AuthorizationCodeInterface
      **/
     public function testAddingStorageWithInvalidKeyStorageCombination()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\AccessTokenInterface'), 'authorization_code');
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\AccessTokenInterface'), 'authorization_code');
     }
 
     public function testAddingStorageWithValidKeyOnlySetsThatKey()
     {
         $server = new Server();
-        $server->addStorage($this->getMock('OAuth2\Storage\Memory'), 'access_token');
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\Memory'), 'access_token');
 
         $reflection = new \ReflectionClass($server);
         $prop = $reflection->getProperty('storages');
@@ -190,7 +190,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddingClientStorageSetsClientCredentialsStorageByDefault()
     {
         $server = new Server();
-        $memory = $this->getMock('OAuth2\Storage\Memory');
+        $memory = $this->getMock('SCFROAuth2\Storage\Memory');
         $server->addStorage($memory, 'client');
 
         $client_credentials = $server->getStorage('client_credentials');
@@ -201,7 +201,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
     public function testAddStorageWithNullValue()
     {
-        $memory = $this->getMock('OAuth2\Storage\Memory');
+        $memory = $this->getMock('SCFROAuth2\Storage\Memory');
         $server = new Server($memory);
         $server->addStorage(null, 'refresh_token');
 
@@ -217,7 +217,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
     public function testNewServerWithNullStorageValue()
     {
-        $memory = $this->getMock('OAuth2\Storage\Memory');
+        $memory = $this->getMock('SCFROAuth2\Storage\Memory');
         $server = new Server(array(
             'client_credentials' => $memory,
             'refresh_token'      => null,
@@ -236,7 +236,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddingClientCredentialsStorageSetsClientStorageByDefault()
     {
         $server = new Server();
-        $memory = $this->getMock('OAuth2\Storage\Memory');
+        $memory = $this->getMock('SCFROAuth2\Storage\Memory');
         $server->addStorage($memory, 'client_credentials');
 
         $client = $server->getStorage('client');
@@ -248,10 +248,10 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testSettingClientStorageByDefaultDoesNotOverrideSetStorage()
     {
         $server = new Server();
-        $pdo = $this->getMockBuilder('OAuth2\Storage\Pdo')
+        $pdo = $this->getMockBuilder('SCFROAuth2\Storage\Pdo')
             ->disableOriginalConstructor()->getMock();
 
-        $memory = $this->getMock('OAuth2\Storage\Memory');
+        $memory = $this->getMock('SCFROAuth2\Storage\Memory');
 
         $server->addStorage($pdo, 'client');
         $server->addStorage($memory, 'client_credentials');
@@ -265,7 +265,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
     public function testAddingResponseType()
     {
-        $storage = $this->getMock('OAuth2\Storage\Memory');
+        $storage = $this->getMock('SCFROAuth2\Storage\Memory');
         $storage
           ->expects($this->any())
           ->method('getClientDetails')
@@ -322,7 +322,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
             'code' => 'testcode',
         ));
         // verify the mock clientAssertionType was called as expected
-        $clientAssertionType = $this->getMock('OAuth2\ClientAssertionType\ClientAssertionTypeInterface', array('validateRequest', 'getClientId'));
+        $clientAssertionType = $this->getMock('SCFROAuth2\ClientAssertionType\ClientAssertionTypeInterface', array('validateRequest', 'getClientId'));
         $clientAssertionType
             ->expects($this->once())
             ->method('validateRequest')
@@ -420,42 +420,42 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException OAuth2\ResponseType\AuthorizationCodeInterface
+     * @expectedException InvalidArgumentException SCFROAuth2\ResponseType\AuthorizationCodeInterface
      **/
     public function testAddingUnknownResponseTypeThrowsException()
     {
         $server = new Server();
-        $server->addResponseType($this->getMock('OAuth2\ResponseType\ResponseTypeInterface'));
+        $server->addResponseType($this->getMock('SCFROAuth2\ResponseType\ResponseTypeInterface'));
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\PublicKeyInterface
+     * @expectedException LogicException SCFROAuth2\Storage\PublicKeyInterface
      **/
     public function testUsingJwtAccessTokensWithoutPublicKeyStorageThrowsException()
     {
         $server = new Server(array(), array('use_jwt_access_tokens' => true));
-        $server->addGrantType($this->getMock('OAuth2\GrantType\GrantTypeInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientCredentialsInterface'));
-        $server->addStorage($this->getMock('OAuth2\Storage\ClientCredentialsInterface'));
+        $server->addGrantType($this->getMock('SCFROAuth2\GrantType\GrantTypeInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface'));
+        $server->addStorage($this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface'));
 
         $server->getTokenController();
     }
 
     public function testUsingJustJwtAccessTokenStorageWithResourceControllerIsOkay()
     {
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($pubkey), array('use_jwt_access_tokens' => true));
 
         $this->assertNotNull($server->getResourceController());
-        $this->assertInstanceOf('OAuth2\Storage\PublicKeyInterface', $server->getStorage('public_key'));
+        $this->assertInstanceOf('SCFROAuth2\Storage\PublicKeyInterface', $server->getStorage('public_key'));
     }
 
     /**
-     * @expectedException LogicException OAuth2\Storage\ClientInterface
+     * @expectedException LogicException SCFROAuth2\Storage\ClientInterface
      **/
     public function testUsingJustJwtAccessTokenStorageWithAuthorizeControllerThrowsException()
     {
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($pubkey), array('use_jwt_access_tokens' => true));
         $this->assertNotNull($server->getAuthorizeController());
     }
@@ -465,19 +465,19 @@ class ServerTest extends \PHPUnit_Framework_TestCase
      **/
     public function testUsingJustJwtAccessTokenStorageWithTokenControllerThrowsException()
     {
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($pubkey), array('use_jwt_access_tokens' => true));
         $server->getTokenController();
     }
 
     public function testUsingJwtAccessTokenAndClientStorageWithAuthorizeControllerIsOkay()
     {
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
         $server = new Server(array($pubkey, $client), array('use_jwt_access_tokens' => true, 'allow_implicit' => true));
         $this->assertNotNull($server->getAuthorizeController());
 
-        $this->assertInstanceOf('OAuth2\ResponseType\JwtAccessToken', $server->getResponseType('token'));
+        $this->assertInstanceOf('SCFROAuth2\ResponseType\JwtAccessToken', $server->getResponseType('token'));
     }
 
     /**
@@ -485,7 +485,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
      **/
     public function testUsingOpenIDConnectWithoutUserClaimsThrowsException()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
         $server = new Server($client, array('use_openid_connect' => true));
 
         $server->getAuthorizeController();
@@ -496,8 +496,8 @@ class ServerTest extends \PHPUnit_Framework_TestCase
      **/
     public function testUsingOpenIDConnectWithoutPublicKeyThrowsException()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OPenID\Storage\UserClaimsInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OPenID\Storage\UserClaimsInterface');
         $server = new Server(array($client, $userclaims), array('use_openid_connect' => true));
 
         $server->getAuthorizeController();
@@ -508,9 +508,9 @@ class ServerTest extends \PHPUnit_Framework_TestCase
      **/
     public function testUsingOpenIDConnectWithoutIssuerThrowsException()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($client, $userclaims, $pubkey), array('use_openid_connect' => true));
 
         $server->getAuthorizeController();
@@ -518,9 +518,9 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
     public function testUsingOpenIDConnectWithIssuerPublicKeyAndUserClaimsIsOkay()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($client, $userclaims, $pubkey), array(
             'use_openid_connect' => true,
             'issuer' => 'someguy',
@@ -528,18 +528,18 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
         $server->getAuthorizeController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
         $this->assertNull($server->getResponseType('id_token token'));
     }
 
     /**
-     * @expectedException LogicException OAuth2\ResponseType\AccessTokenInterface
+     * @expectedException LogicException SCFROAuth2\ResponseType\AccessTokenInterface
      **/
     public function testUsingOpenIDConnectWithAllowImplicitWithoutTokenStorageThrowsException()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($client, $userclaims, $pubkey), array(
             'use_openid_connect' => true,
             'issuer' => 'someguy',
@@ -551,9 +551,9 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
     public function testUsingOpenIDConnectWithAllowImplicitAndUseJwtAccessTokensIsOkay()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
         $server = new Server(array($client, $userclaims, $pubkey), array(
             'use_openid_connect' => true,
             'issuer' => 'someguy',
@@ -563,16 +563,16 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
         $server->getAuthorizeController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
     }
 
     public function testUsingOpenIDConnectWithAllowImplicitAndAccessTokenStorageIsOkay()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
-        $token = $this->getMock('OAuth2\Storage\AccessTokenInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
+        $token = $this->getMock('SCFROAuth2\Storage\AccessTokenInterface');
         $server = new Server(array($client, $userclaims, $pubkey, $token), array(
             'use_openid_connect' => true,
             'issuer' => 'someguy',
@@ -581,41 +581,41 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
         $server->getAuthorizeController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
     }
 
     public function testUsingOpenIDConnectWithAllowImplicitAndAccessTokenResponseTypeIsOkay()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
-        // $token = $this->getMock('OAuth2\Storage\AccessTokenInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
+        // $token = $this->getMock('SCFROAuth2\Storage\AccessTokenInterface');
         $server = new Server(array($client, $userclaims, $pubkey), array(
             'use_openid_connect' => true,
             'issuer' => 'someguy',
             'allow_implicit' => true,
         ));
 
-        $token = $this->getMock('OAuth2\ResponseType\AccessTokenInterface');
+        $token = $this->getMock('SCFROAuth2\ResponseType\AccessTokenInterface');
         $server->addResponseType($token, 'token');
 
         $server->getAuthorizeController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
-        $this->assertInstanceOf('OAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenInterface', $server->getResponseType('id_token'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\ResponseType\IdTokenTokenInterface', $server->getResponseType('id_token token'));
     }
 
     /**
-     * @expectedException LogicException OAuth2\OpenID\Storage\AuthorizationCodeInterface
+     * @expectedException LogicException SCFROAuth2\OpenID\Storage\AuthorizationCodeInterface
      **/
     public function testUsingOpenIDConnectWithAuthorizationCodeStorageThrowsException()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientCredentialsInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
-        $token = $this->getMock('OAuth2\Storage\AccessTokenInterface');
-        $authcode = $this->getMock('OAuth2\Storage\AuthorizationCodeInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
+        $token = $this->getMock('SCFROAuth2\Storage\AccessTokenInterface');
+        $authcode = $this->getMock('SCFROAuth2\Storage\AuthorizationCodeInterface');
 
         $server = new Server(array($client, $userclaims, $pubkey, $token, $authcode), array(
             'use_openid_connect' => true,
@@ -624,16 +624,16 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
         $server->getTokenController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\GrantType\AuthorizationCode', $server->getGrantType('authorization_code'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\GrantType\AuthorizationCode', $server->getGrantType('authorization_code'));
     }
 
     public function testUsingOpenIDConnectWithOpenIDAuthorizationCodeStorageCreatesOpenIDAuthorizationCodeGrantType()
     {
-        $client = $this->getMock('OAuth2\Storage\ClientCredentialsInterface');
-        $userclaims = $this->getMock('OAuth2\OpenID\Storage\UserClaimsInterface');
-        $pubkey = $this->getMock('OAuth2\Storage\PublicKeyInterface');
-        $token = $this->getMock('OAuth2\Storage\AccessTokenInterface');
-        $authcode = $this->getMock('OAuth2\OpenID\Storage\AuthorizationCodeInterface');
+        $client = $this->getMock('SCFROAuth2\Storage\ClientCredentialsInterface');
+        $userclaims = $this->getMock('SCFROAuth2\OpenID\Storage\UserClaimsInterface');
+        $pubkey = $this->getMock('SCFROAuth2\Storage\PublicKeyInterface');
+        $token = $this->getMock('SCFROAuth2\Storage\AccessTokenInterface');
+        $authcode = $this->getMock('SCFROAuth2\OpenID\Storage\AuthorizationCodeInterface');
 
         $server = new Server(array($client, $userclaims, $pubkey, $token, $authcode), array(
             'use_openid_connect' => true,
@@ -642,12 +642,12 @@ class ServerTest extends \PHPUnit_Framework_TestCase
 
         $server->getTokenController();
 
-        $this->assertInstanceOf('OAuth2\OpenID\GrantType\AuthorizationCode', $server->getGrantType('authorization_code'));
+        $this->assertInstanceOf('SCFROAuth2\OpenID\GrantType\AuthorizationCode', $server->getGrantType('authorization_code'));
     }
 
     public function testMultipleValuedResponseTypeOrderDoesntMatter()
     {
-        $responseType = $this->getMock('OAuth2\OpenID\ResponseType\IdTokenTokenInterface');
+        $responseType = $this->getMock('SCFROAuth2\OpenID\ResponseType\IdTokenTokenInterface');
         $server = new Server(array(), array(), array(), array(
             'token id_token' => $responseType,
         ));
@@ -658,7 +658,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddGrantTypeWithoutKey()
     {
         $server = new Server();
-        $server->addGrantType(new \OAuth2\GrantType\AuthorizationCode($this->getMock('OAuth2\Storage\AuthorizationCodeInterface')));
+        $server->addGrantType(new \SCFROAuth2\GrantType\AuthorizationCode($this->getMock('SCFROAuth2\Storage\AuthorizationCodeInterface')));
 
         $grantTypes = $server->getGrantTypes();
         $this->assertEquals('authorization_code', key($grantTypes));
@@ -667,7 +667,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddGrantTypeWithKey()
     {
         $server = new Server();
-        $server->addGrantType(new \OAuth2\GrantType\AuthorizationCode($this->getMock('OAuth2\Storage\AuthorizationCodeInterface')), 'ac');
+        $server->addGrantType(new \SCFROAuth2\GrantType\AuthorizationCode($this->getMock('SCFROAuth2\Storage\AuthorizationCodeInterface')), 'ac');
 
         $grantTypes = $server->getGrantTypes();
         $this->assertEquals('ac', key($grantTypes));
@@ -676,7 +676,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
     public function testAddGrantTypeWithKeyNotString()
     {
         $server = new Server();
-        $server->addGrantType(new \OAuth2\GrantType\AuthorizationCode($this->getMock('OAuth2\Storage\AuthorizationCodeInterface')), 42);
+        $server->addGrantType(new \SCFROAuth2\GrantType\AuthorizationCode($this->getMock('SCFROAuth2\Storage\AuthorizationCodeInterface')), 42);
 
         $grantTypes = $server->getGrantTypes();
         $this->assertEquals('authorization_code', key($grantTypes));

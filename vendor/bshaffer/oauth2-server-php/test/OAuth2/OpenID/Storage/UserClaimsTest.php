@@ -1,9 +1,9 @@
 <?php
 
-namespace OAuth2\OpenID\Storage;
+namespace SCFROAuth2\OpenID\Storage;
 
-use OAuth2\Storage\BaseTest;
-use OAuth2\Storage\NullStorage;
+use SCFROAuth2\Storage\BaseTest;
+use SCFROAuth2\Storage\NullStorage;
 
 class UserClaimsTest extends BaseTest
 {

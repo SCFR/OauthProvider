@@ -1,12 +1,12 @@
 <?php
 
-namespace OAuth2\GrantType;
+namespace SCFROAuth2\GrantType;
 
-use OAuth2\Storage\Bootstrap;
-use OAuth2\Server;
-use OAuth2\Request\TestRequest;
-use OAuth2\Request;
-use OAuth2\Response;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\Server;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\Request;
+use SCFROAuth2\Response;
 
 class ClientCredentialsTest extends \PHPUnit_Framework_TestCase
 {

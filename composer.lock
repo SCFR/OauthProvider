@@ -40,7 +40,7 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "OAuth2": "src/"
+                    "SCFROAuth2": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

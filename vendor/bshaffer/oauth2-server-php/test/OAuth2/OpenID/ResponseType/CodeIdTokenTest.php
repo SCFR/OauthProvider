@@ -1,12 +1,12 @@
 <?php
 
-namespace OAuth2\OpenID\ResponseType;
+namespace SCFROAuth2\OpenID\ResponseType;
 
-use OAuth2\Server;
-use OAuth2\Request;
-use OAuth2\Response;
-use OAuth2\Storage\Bootstrap;
-use OAuth2\GrantType\ClientCredentials;
+use SCFROAuth2\Server;
+use SCFROAuth2\Request;
+use SCFROAuth2\Response;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\GrantType\ClientCredentials;
 
 class CodeIdTokenTest extends \PHPUnit_Framework_TestCase
 {

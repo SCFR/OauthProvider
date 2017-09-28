@@ -176,7 +176,7 @@ To get the diff for a specific change, go to https://github.com/bshaffer/oauth2-
   * bug #162 adds getToken on ResourceController for convenience
   * bug #161 fixes fatal error
   * bug #163 Invalid redirect_uri handling
-  * bug #156 user\_id in OAuth2\_Storage_AuthorizationCodeInterface::getAuthorizationCode() response
+  * bug #156 user\_id in SCFROAuth2\_Storage_AuthorizationCodeInterface::getAuthorizationCode() response
   * bug #157 Fix for extending access and refresh tokens
   * bug #154 ResponseInterface: getParameter method is used in the library but not defined in the interface
   * bug #148 Add more detail to examples in Readme.md

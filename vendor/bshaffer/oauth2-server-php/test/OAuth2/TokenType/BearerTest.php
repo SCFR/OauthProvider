@@ -1,9 +1,9 @@
 <?php
 
-namespace OAuth2\TokenType;
+namespace SCFROAuth2\TokenType;
 
-use OAuth2\Request\TestRequest;
-use OAuth2\Response;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\Response;
 
 class BearerTest extends \PHPUnit_Framework_TestCase
 {

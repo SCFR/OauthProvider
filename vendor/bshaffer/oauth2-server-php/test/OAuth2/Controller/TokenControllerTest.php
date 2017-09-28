@@ -1,15 +1,15 @@
 <?php
 
-namespace OAuth2\Controller;
+namespace SCFROAuth2\Controller;
 
-use OAuth2\Storage\Bootstrap;
-use OAuth2\Server;
-use OAuth2\GrantType\AuthorizationCode;
-use OAuth2\GrantType\ClientCredentials;
-use OAuth2\GrantType\UserCredentials;
-use OAuth2\Scope;
-use OAuth2\Request\TestRequest;
-use OAuth2\Response;
+use SCFROAuth2\Storage\Bootstrap;
+use SCFROAuth2\Server;
+use SCFROAuth2\GrantType\AuthorizationCode;
+use SCFROAuth2\GrantType\ClientCredentials;
+use SCFROAuth2\GrantType\UserCredentials;
+use SCFROAuth2\Scope;
+use SCFROAuth2\Request\TestRequest;
+use SCFROAuth2\Response;
 
 class TokenControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -274,7 +274,7 @@ class TokenControllerTest extends \PHPUnit_Framework_TestCase
     public function testCreateController()
     {
         $storage = Bootstrap::getInstance()->getMemoryStorage();
-        $accessToken = new \OAuth2\ResponseType\AccessToken($storage);
+        $accessToken = new \SCFROAuth2\ResponseType\AccessToken($storage);
         $controller = new TokenController($accessToken, $storage);
     }
 
